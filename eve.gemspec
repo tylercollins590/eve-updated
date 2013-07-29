@@ -15,8 +15,8 @@ Gem::Specification.new do |s|
     "LICENSE.txt",
     "README.rdoc"
   ]
-  #s.files = `git ls-files`.split("\n")
-  #s.test_files = `git ls-files -- {test,spec,features}/**/*`.split("\n")
+  s.files = `git ls-files`.split("\n")
+  s.test_files = `git ls-files -- {test,spec,features}/**/*`.split("\n")
   s.executables = `git ls-files -- bin/*`.split("\n")
 
   s.homepage = "http://thoughtsincomputation.com"
