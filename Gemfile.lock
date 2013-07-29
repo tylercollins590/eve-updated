@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    eve (2.0.1)
+    eve-4 (2.0.1)
       activesupport
       nokogiri
       sc-core-ext
@@ -103,6 +103,6 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
-  eve!
+  eve-4!
   rails
-  rspec-rails (~> 2)
+  rspec-rails
