@@ -1,0 +1,30 @@
+Processing by TrustController#index as HTML
+DEPRECATION WARNING: prefer_trust is deprecated and will be removed from Rails 4.0 (The EVE IGB no longer accepts trust headers. Please use <%=request_trust%> in your view, instead.). (called from block (4 levels) in <top (required)> at /Users/tylercollins/RubymineProjects/eve/spec/controllers/controller_helpers_spec.rb:18)
+Completed 200 OK in 4ms (Views: 3.4ms)
+Processing by TrustController#igb_only as HTML
+DEPRECATION WARNING: prefer_trust is deprecated and will be removed from Rails 4.0 (The EVE IGB no longer accepts trust headers. Please use <%=request_trust%> in your view, instead.). (called from block (4 levels) in <top (required)> at /Users/tylercollins/RubymineProjects/eve/spec/controllers/controller_helpers_spec.rb:29)
+Completed 200 OK in 3ms (Views: 1.7ms)
+Processing by TrustController#html_and_igb as HTML
+DEPRECATION WARNING: prefer_trust is deprecated and will be removed from Rails 4.0 (The EVE IGB no longer accepts trust headers. Please use <%=request_trust%> in your view, instead.). (called from block (4 levels) in <top (required)> at /Users/tylercollins/RubymineProjects/eve/spec/controllers/controller_helpers_spec.rb:36)
+Completed 200 OK in 2ms (Views: 1.0ms)
+Processing by TrustController#html_only as HTML
+DEPRECATION WARNING: prefer_trust is deprecated and will be removed from Rails 4.0 (The EVE IGB no longer accepts trust headers. Please use <%=request_trust%> in your view, instead.). (called from block (4 levels) in <top (required)> at /Users/tylercollins/RubymineProjects/eve/spec/controllers/controller_helpers_spec.rb:43)
+Completed 200 OK in 2ms (Views: 1.1ms)
+Processing by TrustController#no_templates as HTML
+DEPRECATION WARNING: prefer_trust is deprecated and will be removed from Rails 4.0 (The EVE IGB no longer accepts trust headers. Please use <%=request_trust%> in your view, instead.). (called from block (5 levels) in <top (required)> at /Users/tylercollins/RubymineProjects/eve/spec/controllers/controller_helpers_spec.rb:50)
+Completed 500 Internal Server Error in 1ms
+Processing by TrustController#index as HTML
+DEPRECATION WARNING: prefer_trust is deprecated and will be removed from Rails 4.0 (The EVE IGB no longer accepts trust headers. Please use <%=request_trust%> in your view, instead.). (called from block (3 levels) in <top (required)> at /Users/tylercollins/RubymineProjects/eve/spec/controllers/controller_helpers_spec.rb:61)
+Completed 200 OK in 0ms (Views: 0.2ms)
+Processing by TrustController#igb_only as HTML
+DEPRECATION WARNING: prefer_trust is deprecated and will be removed from Rails 4.0 (The EVE IGB no longer accepts trust headers. Please use <%=request_trust%> in your view, instead.). (called from block (5 levels) in <top (required)> at /Users/tylercollins/RubymineProjects/eve/spec/controllers/controller_helpers_spec.rb:67)
+Completed 500 Internal Server Error in 1ms
+Processing by TrustController#html_and_igb as HTML
+DEPRECATION WARNING: prefer_trust is deprecated and will be removed from Rails 4.0 (The EVE IGB no longer accepts trust headers. Please use <%=request_trust%> in your view, instead.). (called from block (4 levels) in <top (required)> at /Users/tylercollins/RubymineProjects/eve/spec/controllers/controller_helpers_spec.rb:73)
+Completed 200 OK in 1ms (Views: 1.2ms)
+Processing by TrustController#html_only as HTML
+DEPRECATION WARNING: prefer_trust is deprecated and will be removed from Rails 4.0 (The EVE IGB no longer accepts trust headers. Please use <%=request_trust%> in your view, instead.). (called from block (4 levels) in <top (required)> at /Users/tylercollins/RubymineProjects/eve/spec/controllers/controller_helpers_spec.rb:80)
+Completed 200 OK in 1ms (Views: 0.9ms)
+Processing by TrustController#no_templates as HTML
+DEPRECATION WARNING: prefer_trust is deprecated and will be removed from Rails 4.0 (The EVE IGB no longer accepts trust headers. Please use <%=request_trust%> in your view, instead.). (called from block (5 levels) in <top (required)> at /Users/tylercollins/RubymineProjects/eve/spec/controllers/controller_helpers_spec.rb:87)
+Completed 500 Internal Server Error in 1ms

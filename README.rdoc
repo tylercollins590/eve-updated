@@ -1,0 +1,145 @@
+= eve
+
+* http://github.com/sinisterchipmunk/eve
+
+== DESCRIPTION:
+
+A Ruby library for interfacing with all aspects of the EVE Online MMO. It is designed for use within a Ruby on Rails
+project, but does not require Rails as a dependency. That means there's nothing preventing you from writing a
+stand-alone application or script using this library.
+
+== QUICK START:
+
+=== Including The Gem
+In Rails 3:
+
+  gem 'eve'
+
+In Rails 2:
+
+  # Please note that the Rails 2 version of this gem is no longer being maintained, so
+  # you will need to download a 1.x version of the gem.
+  config.gem 'eve', :version => "~> 1.0"
+  
+In Pure Ruby:
+  require 'rubygems'
+  require 'eve'
+
+=== Usage Example: Controller
+  class MyEveCompatibleController < ApplicationController
+    requires_trust
+  end
+  
+Rails 3: This returns a blank page with a trust request. This behavior can be overridden with an initializer to provide custom trust request pages:
+  module Eve
+    module Trust
+      module ControllerHelpers
+        def require_trust(trust_message = self.class.trust_message)
+          if igb? && !igb.trusted?
+            render :text => "<center>Requires trust!</br><a href=\"#\" onclick=\"CCPEVE.requestTrust('http://#{request.host_with_port}/')\">give trust</a>", :layout => false
+          end
+        end
+      end
+    end
+  end
+
+=== Usage Example: View Helpers
+  <%=link_to_evemail "Check Your Mail!"%>
+
+  <%if igb.trusted?%>
+    <p>Thanks for your trust! I see you're currently in <%=igb.solar_system_name%>.</p>
+    <p>Here's some information about our secret headquarters:</p>
+    <ul>
+      <li><%=link_to_route "Click For Directions", "Jita"%></li>
+      <li><%=link_to_map "Show On Map", "Jita"%></li>
+    </ul>
+  <%end%>
+
+=== Usage Example: EVE API
+  # Get the current server status
+  api = Eve::API.new()
+  server_status = api.server_status
+  puts "Server reports status #{server_status.server_open ? "ONLINE" : "OFFLINE"}"
+  puts "\tCurrent time is #{server_status.current_time}"
+  puts "\t#{server_status.online_players} players currently online"
+  puts
+  #
+  # Get a list of characters
+  api = Eve::API.new(:user_id => $user_id, :api_key => $limited_api_key)
+  result = api.account.characters
+  puts "Choose a character:"
+  result.characters.each_with_index { |char, index| puts "\t#{index}: #{char.name} (#{char.character_id})" }
+  choice = gets.chomp.to_i
+  puts
+  #
+  # Get the current training queue. Need a full API key and a character ID for that.
+  api.set(:api_key => $full_api_key, :character_id => result.characters[choice].character_id)
+  result = api.character.skill_queue
+  result.skillqueue.each do |skill|
+    result.skillqueue.columns.each do |column|
+      print column.ljust(20), ":\t", skill[column], "\n"
+    end
+    puts
+  end
+
+== DETAILS:
+
+This package is divided into 3 major components, and are listed below. Click on any item to see more information and
+usage examples.
+
+* API libraries: Eve::API
+  * Handles interfacing with the EVE Online API. It allows you to easily query the server for various information about
+    the server status, a given player, or his/her in-game character.
+  * Eventually, this may be extended to incorporate other EVE-related APIs, such as the EVE-Central and EVE Metrics
+    APIs.
+
+* Controller helpers: Eve::Trust
+  * There are several helper methods added to ActionController::Base, and they are designed to facilitate interaction
+    with the in-game browser (IGB). In particular, these helpers allow you to establish trust with the client browser,
+    which will then provide more information about the player's current in-game status (such as his/her current
+    location).
+  * The controller helpers also automatically detect whether the client is, in fact, using the EVE IGB, or whether they
+    are using some other browser. If a view with the ".igb.erb" extension is found, the controller will render that view
+    by default for IGB clients. If the client is using some other browser, or a view with the ".igb.erb" extension is
+    not found, then the default view will be rendered instead.
+
+* View helpers: Eve::Helpers::JavascriptHelper
+  * There are several helper methods added to ActionView, and they are designed to facilitate easy and intuitive
+    generation of proprietary IGB JavaScript calls.
+  * These helpers are automatically made accessible to all instances of ActionView::Base.
+  * To take advantage of these helpers, your application must make use of ActionView::Base, which is the default in Ruby
+    on Rails.
+
+== REQUIREMENTS:
+
+  hpricot
+  activesupport
+
+== INSTALL:
+
+  sudo gem install eve
+
+== LICENSE:
+
+(The MIT License)
+
+Copyright (c) 2010 Colin MacKenzie IV
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
